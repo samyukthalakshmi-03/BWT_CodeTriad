@@ -2,11 +2,11 @@
 Climate Tech Engine – Carbon Intelligence
 Team: CodeTriad
 
-#Problem Statement
+# Problem Statement
 
 Small organizations lack affordable AI-driven tools to measure, forecast, and reduce their carbon footprint due to limited infrastructure and sustainability expertise.
 
-#Our Solution – SustainIQ
+# Our Solution – SustainIQ
 
 SustainIQ is an AI-powered carbon intelligence platform that transforms basic operational inputs into actionable sustainability strategies.
 
@@ -24,7 +24,7 @@ Uses an LLM to generate intelligent, prioritized sustainability roadmaps
 
 No hardware. No sensors. No dedicated sustainability team required.
 
-#How It Works
+# How It Works
 
 1️. Data Input
 
@@ -66,7 +66,7 @@ Suggests cost–carbon tradeoffs
 
 Produces an actionable sustainability roadmap
 
-#Architecture
+# Architecture
 
 ```
 User
@@ -85,7 +85,7 @@ Visualization Layer (Chart.js)
 Interactive Dashboard Output
 ```
 
-#Tech Stack
+# Tech Stack
 
 Frontend: HTML5, CSS3, JavaScript 
 
@@ -94,7 +94,7 @@ AI Engine: LLM via API
 Visualization: Chart.js
 
 
-#Key Features
+# Key Features
 
 Carbon Footprint Calculator
 
@@ -106,7 +106,7 @@ LLM-Generated Sustainability Roadmap
 
 Cost vs Carbon Tradeoff Analysis
 
-#Impact
+# Impact
 
 Makes carbon intelligence accessible to small organizations
 
