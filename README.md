@@ -68,6 +68,7 @@ Produces an actionable sustainability roadmap
 
 Architecture
 
+```
 User
   ↓
 Web Interface (HTML + CSS)
@@ -82,7 +83,7 @@ LLM API (AI Recommendation Engine)
 Visualization Layer (Chart.js)
   ↓
 Interactive Dashboard Output
-
+```
 
 Tech Stack
 
