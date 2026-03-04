@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SustainIQ — Carbon Intelligence for Small Businesses</title>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" />
+  <link rel="stylesheet" href="styles.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+</head>
+<body>
+  <header class="container">
+    <h1>SustainIQ</h1>
+    <p class="subtitle">Lightweight AI-powered carbon insights, forecasts, and actions</p>
+  </header>
+
+  <main class="container grid">
+    <section class="card">
+      <h2>Inputs</h2>
+      <form id="input-form">
+        <div class="field">
+          <label for="electricityBill">Monthly electricity bill</label>
+          <input id="electricityBill" name="electricityBill" type="number" min="0" step="0.01" placeholder="e.g., 120.00" required />
+        </div>
+        <div class="field">
+          <label for="tariff">Electricity tariff (per kWh)</label>
+          <input id="tariff" name="tariff" type="number" min="0.01" step="0.01" placeholder="e.g., 0.12" required />
+        </div>
+        <div class="field">
+          <label for="employees">Number of employees</label>
+          <input id="employees" name="employees" type="number" min="1" step="1" placeholder="e.g., 15" required />
+        </div>
+        <div class="field">
+          <label for="acHours">AC usage (hours/day)</label>
+          <input id="acHours" name="acHours" type="number" min="0" step="0.5" placeholder="e.g., 6" required />
+        </div>
+        <div class="field">
+          <label for="dieselLiters">Diesel usage (liters/month)</label>
+          <input id="dieselLiters" name="dieselLiters" type="number" min="0" step="0.1" placeholder="e.g., 20" />
+        </div>
+        <div class="field">
+          <label for="officeSize">Office size (m²)</label>
+          <input id="officeSize" name="officeSize" type="number" min="5" step="1" placeholder="e.g., 100" required />
+        </div>
+        <button id="calculateBtn" type="submit" class="primary">Calculate</button>
+      </form>
+    </section>
+
+    <section class="card">
+      <h2>Results</h2>
+      <div class="results">
+        <div class="stat">
+          <div class="stat-label">Monthly CO₂e</div>
+          <div class="stat-value" id="monthlyCO2">—</div>
+        </div>
+        <div class="stat">
+          <div class="stat-label">Annual CO₂e</div>
+          <div class="stat-value" id="annualCO2">—</div>
+        </div>
+        <div class="stat">
+          <div class="stat-label">Intensity per employee</div>
+          <div class="stat-value" id="intensity">—</div>
+        </div>
+        <div class="score">
+          <div class="score-number" id="scoreNumber">—</div>
+          <div class="score-label" id="scoreLabel">Carbon Intelligence Score</div>
+        </div>
+        <div class="risk" id="riskLabel">—</div>
+        <div class="gauge">
+          <canvas id="scoreGauge" height="120"></canvas>
+        </div>
+        <div class="explain">
+          <details>
+            <summary>How was this score calculated?</summary>
+            <div id="scoreExplain"></div>
+          </details>
+          <div id="benchmarkMsg" class="muted"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Forecast</h2>
+      <canvas id="forecastChart" height="140"></canvas>
+    </section>
+
+    <section class="card">
+      <h2>Source Breakdown</h2>
+      <canvas id="breakdownChart" height="140"></canvas>
+    </section>
+
+    <section class="card">
+      <h2>Scenario Simulator</h2>
+      <div class="scenario-grid">
+        <div class="field">
+          <label for="acReduction">Reduce AC hours (%)</label>
+          <input id="acReduction" type="range" min="0" max="50" step="5" value="10" />
+          <span id="acReductionVal">10%</span>
+        </div>
+        <div class="field">
+          <label for="efficiencyGain">Energy efficiency improvement (%)</label>
+          <input id="efficiencyGain" type="range" min="0" max="40" step="5" value="10" />
+          <span id="efficiencyGainVal">10%</span>
+        </div>
+        <div class="field">
+          <label for="renewableOffset">Renewable offset (%)</label>
+          <input id="renewableOffset" type="range" min="0" max="100" step="10" value="20" />
+          <span id="renewableOffsetVal">20%</span>
+        </div>
+        <div class="field">
+          <label for="investment">Estimated investment (optional)</label>
+          <input id="investment" type="number" min="0" step="1" placeholder="e.g., 1500" />
+        </div>
+        <button id="simulateBtn" class="secondary">Simulate</button>
+      </div>
+      <div class="scenario-results">
+        <div class="stat">
+          <div class="stat-label">Annual CO₂e reduction</div>
+          <div class="stat-value" id="scenarioCO2Saved">—</div>
+        </div>
+        <div class="stat">
+          <div class="stat-label">Annual cost savings</div>
+          <div class="stat-value" id="scenarioCostSaved">—</div>
+        </div>
+        <div class="stat">
+          <div class="stat-label">Estimated payback</div>
+          <div class="stat-value" id="scenarioPayback">—</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>AI-Generated Roadmap</h2>
+      <div id="aiRoadmap" class="ai-box">Run a calculation to generate recommendations.</div>
+    </section>
+  </main>
+
+  <footer class="container">
+    <small>© SustainIQ</small>
+  </footer>
+
+  <script src="app.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const syncVal = (id, labelId, suffix='%') => {
+        const el = document.getElementById(id);
+        const label = document.getElementById(labelId);
+        const update = () => label.textContent = el.value + suffix;
+        el.addEventListener('input', update);
+        update();
+      };
+      syncVal('acReduction', 'acReductionVal');
+      syncVal('efficiencyGain', 'efficiencyGainVal');
+      syncVal('renewableOffset', 'renewableOffsetVal');
+    });
+  </script>
+</body>
+</html>
+
