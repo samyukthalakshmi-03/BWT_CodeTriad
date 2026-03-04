@@ -134,13 +134,19 @@ function renderCharts(base, forecast) {
         data: forecast,
         fill: false,
         borderColor: '#38bdf8',
+        borderWidth: 2,
+        pointRadius: 0,
         tension: 0.25
       }]
     },
     options: {
       responsive: true,
+      maintainAspectRatio: false,
+      devicePixelRatio: Math.max(1, window.devicePixelRatio || 1),
+      animation: false,
       scales: {
-        y: { beginAtZero: true }
+        y: { beginAtZero: true, grid: { color: 'rgba(148,163,184,0.15)' } },
+        x: { grid: { color: 'rgba(148,163,184,0.08)' } }
       },
       plugins: {
         legend: { display: false }
@@ -160,6 +166,9 @@ function renderCharts(base, forecast) {
     },
     options: {
       responsive: true,
+      maintainAspectRatio: false,
+      devicePixelRatio: Math.max(1, window.devicePixelRatio || 1),
+      animation: false,
       plugins: { legend: { position: 'bottom' } }
     }
   });
@@ -197,6 +206,9 @@ function renderGauge(score, riskCls) {
     },
     options: {
       responsive: true,
+      maintainAspectRatio: false,
+      devicePixelRatio: Math.max(1, window.devicePixelRatio || 1),
+      animation: false,
       plugins: { legend: { display: false }, tooltip: { enabled: false } }
     }
   });

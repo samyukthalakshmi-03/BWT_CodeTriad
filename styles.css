@@ -54,8 +54,24 @@ h1 {
   font-size: 18px;
 }
 
+.chart {
+  height: 280px;
+}
+.chart canvas {
+  width: 100% !important;
+  height: 100% !important;
+  image-rendering: optimizeQuality;
+}
+
+/* Tablet tweaks */
 @media (max-width: 900px) {
   .card { grid-column: span 12; }
+}
+@media (max-width: 600px) {
+  .results, .scenario-results { grid-template-columns: repeat(12, 1fr); }
+  .stat, .score, .risk, .gauge, .explain { grid-column: span 12; }
+  .scenario-grid .field { grid-column: span 12; }
+  .chart { height: 220px; }
 }
 
 .field {
@@ -136,6 +152,11 @@ button.secondary {
   padding: 10px;
   display: grid;
   place-items: center;
+  min-height: 160px;
+}
+.gauge canvas {
+  width: 100% !important;
+  height: 100% !important;
 }
 .score-number {
   font-size: 32px;
