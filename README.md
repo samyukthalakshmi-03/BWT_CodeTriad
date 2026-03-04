@@ -128,7 +128,7 @@ Produces a clear, actionable sustainability roadmap
 
 # Architecture
 
-``` User
+```User
   ↓
 Web Interface (HTML + CSS + JavaScript)
   ↓
@@ -142,7 +142,7 @@ LLM API (AI Recommendation Engine)
   ↓
 Visualization Layer (Chart.js)
   ↓
-Interactive Carbon Intelligence Dashboard ```
+Interactive Carbon Intelligence Dashboard```
 
 
 # Tech Stack
