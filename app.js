@@ -185,6 +185,35 @@ function generateRoadmap(base, score, risk) {
   document.getElementById('aiRoadmap').innerHTML = html;
 }
 
+async function generateRoadmapViaAPI(base, scoreObj) {
+  const payload = {
+    region: 'GLOBAL',
+    metrics: {
+      monthlyT: base.monthlyT,
+      annualT: base.annualT,
+      intensityTPerEmp: base.intensityTPerEmp,
+      fossilShare: base.fossilShare,
+      acSharePct: base.acSharePct,
+      score: scoreObj.score,
+      risk: scoreObj.risk.label
+    }
+  };
+  try {
+    const res = await fetch('http://127.0.0.1:8001/api/roadmap', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+    if (!res.ok) throw new Error('non-200');
+    const data = await res.json();
+    const items = data.recommendations || [];
+    const html = `<ul>${items.map(i => `<li>${i}</li>`).join('')}</ul><div><strong>${scoreObj.risk.label}</strong> • Score ${scoreObj.score}</div>`;
+    document.getElementById('aiRoadmap').innerHTML = html;
+  } catch (e) {
+    generateRoadmap(base, scoreObj.score, scoreObj.risk);
+  }
+}
+
 function renderGauge(score, riskCls) {
   const el = document.getElementById('scoreGauge');
   if (!el) return;
@@ -258,7 +287,7 @@ function updateUI(inputs, base, scoreObj, forecast) {
   renderGauge(scoreObj.score, scoreObj.risk.cls);
   updateScoreExplanation(scoreObj);
   updateBenchmarkMessage(inputs, base);
-  generateRoadmap(base, scoreObj.score, scoreObj.risk);
+  generateRoadmapViaAPI(base, scoreObj);
 }
 
 function onCalculate(e) {
