@@ -129,7 +129,9 @@ Produces a clear, actionable sustainability roadmap
 # Tech Stack
 
 Frontend: HTML5, CSS3, JavaScript
+
 AI Engine: LLM via API
+
 Visualization: Chart.js
 
 # Key Features
