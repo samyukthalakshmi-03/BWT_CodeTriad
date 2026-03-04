@@ -1,31 +1,43 @@
 # BWT_CodeTriad
 Climate Tech Engine – Carbon Intelligence
+
 Team: CodeTriad
 
 # Problem Statement
 
-Small organizations lack affordable AI-driven tools to measure, forecast, and reduce their carbon footprint due to limited infrastructure and sustainability expertise.
+Small and micro organizations lack accessible, AI-driven tools to measure, forecast, and reduce their carbon footprint.
+
+Existing carbon platforms are often enterprise-focused, data-intensive, and require sustainability expertise or complex integrations — creating a gap for smaller organizations with limited infrastructure.
 
 # Our Solution – SustainIQ
 
-SustainIQ is an AI-powered carbon intelligence platform that transforms basic operational inputs into actionable sustainability strategies.
+SustainIQ is a lightweight AI-powered carbon intelligence platform designed for small organizations.
 
-It:
+It transforms basic operational inputs into:
 
-Estimates carbon footprint from operational data
+Measurable carbon insights
 
-Forecasts future emissions
+Forecasted emission trends
 
-Identifies emission hotspots
+Decision-ready sustainability strategies
 
-Simulates reduction scenarios
+No hardware. No ERP integration. No dedicated sustainability team required.
 
-Uses an LLM to generate intelligent, prioritized sustainability roadmaps
+# What Makes SustainIQ Different
 
-No hardware. No sensors. No dedicated sustainability team required.
+Unlike enterprise carbon accounting platforms (e.g., Watershed or Persefoni), SustainIQ focuses on:
+
+Minimal input requirements
+
+Rapid estimation without complex onboarding
+
+AI-generated decision guidance
+
+Carbon Intelligence Scoring for small businesses
+
+It prioritizes accessibility and actionability over compliance-heavy reporting.
 
 # How It Works
-
 1️. Data Input
 
 User provides:
@@ -36,7 +48,7 @@ Number of employees
 
 AC usage hours
 
-Diesel usage (optional)
+Diesel usage 
 
 Office size
 
@@ -44,37 +56,85 @@ Office size
 
 Converts cost → estimated energy consumption
 
-Applies emission factors
+Applies standardized emission factors
 
 Calculates total CO₂ footprint
 
-3️. Forecasting Engine
+Computes emission intensity per employee
+
+3️. Carbon Intelligence Score (0–100)
+
+SustainIQ generates a Carbon Intelligence Score based on:
+
+Emission intensity
+
+Energy dependency patterns
+
+Growth trend risk
+
+Fossil fuel reliance
+
+This score classifies organizations as:
+
+Low Risk
+
+Moderate Risk
+
+High Risk
+
+Providing a simple sustainability maturity indicator.
+
+4️. Forecasting Engine
 
 Projects 6-month emission trends
 
-Identifies growth patterns
+Detects growth or reduction patterns
 
-4️. AI Optimization Engine (LLM-Powered)
+Identifies potential sustainability risks
 
-Structured carbon data is sent to an LLM via API
+5️. Scenario & Payback Simulator
 
-The LLM analyzes emission patterns
+Users can simulate:
+
+AC usage reduction
+
+Energy efficiency improvements
+
+Partial renewable offset
+
+The system calculates:
+
+Emission reduction (tons CO₂/year)
+
+Cost savings
+
+Estimated payback timeline
+
+5-year environmental impact
+
+6️. AI Optimization Engine (LLM-Powered)
+
+Structured carbon data is sent to an LLM via API.
+
+The LLM:
+
+Analyzes emission patterns
 
 Generates prioritized reduction strategies
 
 Suggests cost–carbon tradeoffs
 
-Produces an actionable sustainability roadmap
+Produces a clear, actionable sustainability roadmap
 
 # Architecture
 
-```
 User
   ↓
-Web Interface (HTML + CSS)
+Web Interface (HTML + CSS + JavaScript)
   ↓
-JavaScript Processing Layer
+Carbon Processing Layer
    ├── Carbon Estimation Module
+   ├── Intelligence Scoring Engine
    ├── Forecasting Engine
    └── Scenario Simulator
   ↓
@@ -82,17 +142,14 @@ LLM API (AI Recommendation Engine)
   ↓
 Visualization Layer (Chart.js)
   ↓
-Interactive Dashboard Output
-```
+Interactive Carbon Intelligence Dashboard
+
 
 # Tech Stack
 
-Frontend: HTML5, CSS3, JavaScript 
-
+Frontend: HTML5, CSS3, JavaScript
 AI Engine: LLM via API
-
 Visualization: Chart.js
-
 
 # Key Features
 
@@ -100,23 +157,29 @@ Carbon Footprint Calculator
 
 Emission Forecasting
 
-Reduction Simulation
+Carbon Intelligence Score (0–100)
 
-LLM-Generated Sustainability Roadmap
+Reduction Scenario Simulation
 
 Cost vs Carbon Tradeoff Analysis
+
+LLM-Generated Sustainability Roadmap
 
 # Impact
 
 Makes carbon intelligence accessible to small organizations
 
-Converts simple financial inputs into AI-driven sustainability decisions
+Converts simple financial inputs into actionable sustainability decisions
+
+Bridges the gap between complex enterprise platforms and micro businesses
 
 Enables data-backed emission reduction planning
 
-Eliminates need for physical monitoring infrastructure
+Eliminates the need for physical monitoring infrastructure
 
-Bill upload (PDF parsing)
+# Future Enhancements
+
+Bill upload with PDF parsing
 
 Multi-branch carbon tracking
 
