@@ -118,7 +118,7 @@ function formatCurrency(n) {
   return new Intl.NumberFormat(undefined, { style: 'currency', currency: 'USD', maximumFractionDigits: 0 }).format(n);
 }
 
-let charts = { forecast: null, breakdown: null, gauge: null };
+let charts = { forecast: null, breakdown: null, gauge: null, scenarioCompare: null };
 function renderCharts(base, forecast) {
   const ctx1 = document.getElementById('forecastChart').getContext('2d');
   const ctx2 = document.getElementById('breakdownChart').getContext('2d');
@@ -170,6 +170,31 @@ function renderCharts(base, forecast) {
       devicePixelRatio: Math.max(1, window.devicePixelRatio || 1),
       animation: false,
       plugins: { legend: { position: 'bottom' } }
+    }
+  });
+}
+
+function renderScenarioCompare(beforeAnnualT, afterAnnualT) {
+  const el = document.getElementById('scenarioCompareChart');
+  if (!el) return;
+  const ctx = el.getContext('2d');
+  if (charts.scenarioCompare) charts.scenarioCompare.destroy();
+  charts.scenarioCompare = new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: ['Before','After'],
+      datasets: [{
+        data: [Number(beforeAnnualT.toFixed(2)), Number(afterAnnualT.toFixed(2))],
+        backgroundColor: ['#64748b','#22c55e']
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      devicePixelRatio: Math.max(1, window.devicePixelRatio || 1),
+      animation: false,
+      plugins: { legend: { display: false } },
+      scales: { y: { beginAtZero: true } }
     }
   });
 }
@@ -307,9 +332,23 @@ function onSimulate() {
   document.getElementById('scenarioCO2Saved').textContent = formatTons(result.annualTReduced);
   document.getElementById('scenarioCostSaved').textContent = formatCurrency(result.annualCostSaved);
   document.getElementById('scenarioPayback').textContent = result.paybackMonths ? `${result.paybackMonths} months` : 'N/A';
+  const afterAnnual = Math.max(0, base.annualT - result.annualTReduced);
+  renderScenarioCompare(base.annualT, afterAnnual);
 }
 
 window.addEventListener('DOMContentLoaded', () => {
   document.getElementById('input-form').addEventListener('submit', onCalculate);
   document.getElementById('simulateBtn').addEventListener('click', onSimulate);
+  const demo = document.getElementById('demoBtn');
+  if (demo) {
+    demo.addEventListener('click', () => {
+      document.getElementById('electricityBill').value = 250;
+      document.getElementById('tariff').value = 0.12;
+      document.getElementById('employees').value = 18;
+      document.getElementById('acHours').value = 8;
+      document.getElementById('dieselLiters').value = 10;
+      document.getElementById('officeSize').value = 120;
+      document.getElementById('input-form').requestSubmit();
+    });
+  }
 });

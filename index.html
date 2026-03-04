@@ -42,7 +42,10 @@
           <label for="officeSize">Office size (m²)</label>
           <input id="officeSize" name="officeSize" type="number" min="5" step="1" placeholder="e.g., 100" required />
         </div>
-        <button id="calculateBtn" type="submit" class="primary">Calculate</button>
+        <div class="actions">
+          <button id="calculateBtn" type="submit" class="primary">Calculate</button>
+          <button id="demoBtn" type="button" class="secondary">Demo Data</button>
+        </div>
       </form>
     </section>
 
@@ -127,6 +130,7 @@
           <div class="stat-value" id="scenarioPayback">—</div>
         </div>
       </div>
+      <div class="chart chart-small"><canvas id="scenarioCompareChart"></canvas></div>
     </section>
 
     <section class="card">

@@ -63,6 +63,8 @@ h1 {
   height: 100% !important;
   image-rendering: optimizeQuality;
 }
+.chart-small { height: 180px; }
+.chart-small canvas { width: 100% !important; height: 100% !important; }
 
 /* Tablet tweaks */
 @media (max-width: 900px) {
@@ -79,6 +81,11 @@ h1 {
   display: grid;
   gap: 6px;
   margin-bottom: 12px;
+}
+.actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 6px;
 }
 label {
   color: var(--muted);
