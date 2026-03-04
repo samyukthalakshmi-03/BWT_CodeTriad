@@ -126,23 +126,25 @@ Suggests cost–carbon tradeoffs
 
 Produces a clear, actionable sustainability roadmap
 
-# Architecture
+````markdown
+## Architecture
 
-```User
-  ↓
+
+User
+↓
 Web Interface (HTML + CSS + JavaScript)
-  ↓
+↓
 Carbon Processing Layer
-   ├── Carbon Estimation Module
-   ├── Intelligence Scoring Engine
-   ├── Forecasting Engine
-   └── Scenario Simulator
-  ↓
+├── Carbon Estimation Module
+├── Intelligence Scoring Engine
+├── Forecasting Engine
+└── Scenario Simulator
+↓
 LLM API (AI Recommendation Engine)
-  ↓
+↓
 Visualization Layer (Chart.js)
-  ↓
-Interactive Carbon Intelligence Dashboard```
+↓
+Interactive Carbon Intelligence Dashboard
 
 
 # Tech Stack
