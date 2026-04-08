@@ -128,11 +128,12 @@ Produces a clear, actionable sustainability roadmap
 
 # Tech Stack
 
-Frontend: HTML5, CSS3, JavaScript
-
-AI Engine: LLM via API
-
-Visualization: Chart.js
+- Frontend: HTML5, CSS3, JavaScript (vanilla)
+- Visualization: Chart.js
+- Backend/API: Python microservice 
+- AI Engine: LLM via server‑side API proxy (OpenAI-compatible), with heuristic fallback
+- Dev Runtime: Static web (Python http.server) + API 
+- Secrets: Environment variables (OPENAI_API_KEY), never in client code
 
 # Key Features
 
